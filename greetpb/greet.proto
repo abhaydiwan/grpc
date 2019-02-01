@@ -13,7 +13,7 @@ message GreetRequest{
 }
 
 message GreetResponse{
-    Greeting result = 1;
+    string result = 1;
 }
 
 service GreetService{
