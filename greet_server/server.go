@@ -3,8 +3,12 @@ package main
 import (
 	"google.golang.org/grpc"
 	"fmt"
+	"log"
 	"net"
+	"github.com/abhaydiwan/grpc/greetpb"
 )
+
+type server struct{}
 
 func main() {
 
@@ -16,4 +20,9 @@ func main() {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 	s:=grpc.NewServer()
+	greetpb.RegisterGreetServiceServer(s,&server{})
+
+	if err:= s.Serve(lis); err != nil {
+		log.Fatalf("Failed to serve: %v", err)
+	}
 }
